@@ -1,19 +1,23 @@
 //TODO: add php and SQL code to insert new entry
 
+
+
 <--------
 Fields for Inn Owners
 -------->
 ID, Name, Email, clientid, apiKey, clearance level
 
+
+
 <------
 Fields for Account managers
 -------->
-
 ID, Name, Email, clearance level
+
+
 
 <--------
 Fields for Senior Account Manager
 -------->
-
 ID, Name, Email, clearance level
 
