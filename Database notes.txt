@@ -1,19 +1,40 @@
 //TODO: add php and SQL code to insert new entry
 
+
+
 <--------
-Fields for Inn Owners
+Fields for Inn Owners Table
 -------->
-ID, Name, Email, clientid, apiKey, clearance level
+ID, Name, Email, clientId, apiKey, clearance level
+
+
 
 <------
-Fields for Account managers
+Fields for Account managers Table
 -------->
-
 ID, Name, Email, clearance level
+
+
 
 <--------
-Fields for Senior Account Manager
+Fields for Senior Account Manager Table
 -------->
-
 ID, Name, Email, clearance level
 
+
+How/where to store URLS for reports pages????
+
+
+OR
+
+
+<--------
+Fields for user table
+-------->
+ID, Name, Email, clientId, apiKey, userType(ex. InnOwner, AccountManager, SeniorManager)
+
+
+<--------
+Field for Pages table
+-------->
+clientId, filename(ex. 10-19-2019.php)
