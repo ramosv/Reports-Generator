@@ -1,0 +1,24 @@
+[29-Feb-2020 00:42:17 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home4/bacsvice/public_html/bacs350/lib/log.php:41
+Stack trace:
+#0 /home4/bacsvice/public_html/bacs350/lib/log.php(59): log_event('/bacs350/index....')
+#1 /home4/bacsvice/public_html/bacs350/index.php(10): log_page()
+#2 {main}
+  thrown in /home4/bacsvice/public_html/bacs350/lib/log.php on line 41
+[29-Feb-2020 00:42:29 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home4/bacsvice/public_html/bacs350/lib/log.php:41
+Stack trace:
+#0 /home4/bacsvice/public_html/bacs350/lib/log.php(59): log_event('/bacs350/index....')
+#1 /home4/bacsvice/public_html/bacs350/index.php(10): log_page()
+#2 {main}
+  thrown in /home4/bacsvice/public_html/bacs350/lib/log.php on line 41
+[29-Feb-2020 00:46:36 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home4/bacsvice/public_html/bacs350/lib/log.php:41
+Stack trace:
+#0 /home4/bacsvice/public_html/bacs350/lib/log.php(59): log_event('/bacs350/index....')
+#1 /home4/bacsvice/public_html/bacs350/index.php(10): log_page()
+#2 {main}
+  thrown in /home4/bacsvice/public_html/bacs350/lib/log.php on line 41
+[29-Feb-2020 00:46:44 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home4/bacsvice/public_html/bacs350/lib/log.php:41
+Stack trace:
+#0 /home4/bacsvice/public_html/bacs350/lib/log.php(59): log_event('/bacs350/index....')
+#1 /home4/bacsvice/public_html/bacs350/index.php(10): log_page()
+#2 {main}
+  thrown in /home4/bacsvice/public_html/bacs350/lib/log.php on line 41
