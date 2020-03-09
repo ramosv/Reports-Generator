@@ -1,0 +1,8 @@
+[28-Feb-2020 12:00:49 America/Boise] PHP Parse error:  syntax error, unexpected '$port' (T_VARIABLE) in /home4/bacsvice/public_html/bacs488/lib/secret_settings.php on line 3
+[28-Feb-2020 12:00:52 America/Boise] PHP Parse error:  syntax error, unexpected '$port' (T_VARIABLE) in /home4/bacsvice/public_html/bacs488/lib/secret_settings.php on line 3
+[29-Feb-2020 00:42:25 America/Boise] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /home4/bacsvice/public_html/bacs488/lib/log.php:41
+Stack trace:
+#0 /home4/bacsvice/public_html/bacs488/lib/log.php(59): log_event('/bacs488/lib/pa...')
+#1 /home4/bacsvice/public_html/bacs488/lib/pagelog.php(7): log_page()
+#2 {main}
+  thrown in /home4/bacsvice/public_html/bacs488/lib/log.php on line 41
