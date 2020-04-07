@@ -26,7 +26,7 @@
 
     // Text
     $text = '
-    <h2>Edditing Page (UC-3)</h2>
+    <h2>Update User Page (UC-5)</h2>
     <p>
         This solution demonstrates the notes application with 
         both the MVC design pattern and  authentication code.
