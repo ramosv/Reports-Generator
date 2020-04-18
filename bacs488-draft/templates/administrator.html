@@ -1,0 +1,20 @@
+<div class="card">
+
+    <div class="card-header">
+        [{{ UserID }}] {{ Email }}
+    </div>
+
+    <div class="card-body card-padding">
+        {{ InnName }} {{ UserTypeID }}
+    </div>
+
+    <p>
+        <a href="private.php?action=edit&id={{ UserID }}" class="button">
+            Edit
+        </a>
+        <a class="button" href="private.php?action=remove&id={{ UserID }}">
+            Delete
+        </a>
+    </p>
+
+</div>

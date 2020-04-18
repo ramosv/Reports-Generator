@@ -1,0 +1,29 @@
+<h2>Login Page (UC-1)</h2>
+
+<div class="card">
+    <div class="card-header">
+        Login Form
+    </div>
+    <div class="card-body">
+        <form action="{{ next }}" method="post">
+
+            <table class="table table-hover">
+                <tr>
+                    <td><label>Email:</label></td>
+                    <td><input type="text" name="Email" class="form-text"></td>
+                </tr>
+                <tr>
+                    <td><label>Password:</label></td>
+                    <td><input type="password" name="Password" class="form-text"></td>
+                </tr>
+
+                <tr>
+                    <td><input type="submit" value="Login" class="button"></td>
+                </tr>
+            </table>
+
+            <input type="hidden" name="action" value="validate">
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+    </div>
+</div>
