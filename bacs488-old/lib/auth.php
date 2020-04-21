@@ -17,50 +17,48 @@
 
     require_once 'log.php';
     require_once 'db.php';
-    require_once 'private.php';
-
     session_start ();
 
     /* ---------------------------
              M O D E L
      --------------------------- */
 
-    // Check to see that the Password in OK
+    // Check to see that the password in OK
     function is_valid_login ($email, $password) {
-        $query = 'SELECT Password FROM users WHERE Email=:Email';
+        $query = 'SELECT password FROM administrators WHERE email=:email';
         global $db;
         $statement = $db->prepare($query);
-        $statement->bindValue(':Email', $email);
+        $statement->bindValue(':email', $email);
         $statement->execute();
         $row = $statement->fetch();
         $statement->closeCursor();
-        $hash = $row['Password'];
+        $hash = $row['password'];
         log_event("User login check: $email, $hash");
         return password_verify($password, $hash);
     }
 
 
-    // Set the Password into the administrator table
+    // Set the password into the administrator table
     function register_user() {
         // Read form values
+        $email    = filter_input(INPUT_POST, 'email');
+        $password = filter_input(INPUT_POST, 'password');
+        $first    = filter_input(INPUT_POST, 'first');
+        $last     = filter_input(INPUT_POST, 'last');
         
-        $InnName  = filter_input(INPUT_POST, 'InnName');
-        $Password = filter_input(INPUT_POST, 'Password');
-        $Email    = filter_input(INPUT_POST, 'Email');
-        $ViewID     = filter_input(INPUT_POST, 'ViewID');
+        log_event("$email, $first, $last");
+        $hash = password_hash($password, PASSWORD_DEFAULT);
         
-        //log_event("$Email, $InnName, $UserTypeID");
-        $hash = password_hash($Password, PASSWORD_DEFAULT);
-        $query = 'INSERT INTO users (UserID, UserTypeID, InnName, Password, ViewID, Email) 
-            VALUES (NULL, 1, :InnName, :Password, :ViewID, :Email);';
+        $query = 'INSERT INTO administrators (email, password, firstName, lastName) 
+            VALUES (:email, :password, :first, :last);';
         
         global $db;
         $statement = $db->prepare($query);
         
-        $statement->bindValue(':InnName', $InnName);
-        $statement->bindValue(':Password', $hash);
-        $statement->bindValue(':Email', $Email);
-        $statement->bindValue(':ViewID', $ViewID);
+        $statement->bindValue(':email', $email);
+        $statement->bindValue(':password', $hash);
+        $statement->bindValue(':first', $first);
+        $statement->bindValue(':last', $last);
         
         $statement->execute();
         $statement->closeCursor();
@@ -98,10 +96,10 @@
     }
 
     
-    // Test if Password is valid or not
+    // Test if password is valid or not
     function validate () {
-        $email    = filter_input(INPUT_POST, 'Email');
-        $password = filter_input(INPUT_POST, 'Password');
+        $email    = filter_input(INPUT_POST, 'email');
+        $password = filter_input(INPUT_POST, 'password');
         log_event("Validate: $email, $password");
         if (is_valid_login ($email, $password)) {
             $_SESSION['USER'] = $email;

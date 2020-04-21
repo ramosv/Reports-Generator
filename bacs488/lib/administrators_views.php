@@ -2,16 +2,19 @@
 
     require_once 'auth.php';
     require_once 'views.php';
-    require_once 'private.php';
     require_once 'db.php';
+    require_once 'private.php';
+
+    
 
 
-    function get_administrators($id) {
+
+    function get_administrators($UserID) {
         global $db;
         try {
-            $query = "SELECT * FROM administrators WHERE id = :id";
+            $query = "SELECT * FROM Users WHERE UserID = :UserID";
             $statement = $db->prepare($query);
-            $statement->bindValue(':id', $id);
+            $statement->bindValue(':UserID', $UserID);
             $statement->execute();
             $record = $statement->fetch();
             $statement->closeCursor();
@@ -26,10 +29,10 @@
        
 
     // Query for all superheros
-    function list_administrators () {
+    function list_administrator() {
         global $db;
        try {
-            $query = "SELECT * FROM administrators";
+            $query = "SELECT * FROM Users";
             $statement = $db->prepare($query);
             $statement->execute();
             return $statement->fetchAll();
@@ -44,13 +47,13 @@
 
     // Delete Database Record
     function delete_administrator() {        
-        $id = filter_input(INPUT_POST, 'id');
-        if (!empty($id)) {
+        $UserID = filter_input(INPUT_POST, 'UserID');
+        if (!empty($UserID)) {
             try {
-                $query = "DELETE from administrators WHERE id = :id";
+                $query = "DELETE FROM Users WHERE UserID = :UserID";
                 global $db;
                 $statement = $db->prepare($query);
-                $statement->bindValue(':id', $id);
+                $statement->bindValue(':UserID', $UserID);
                 $statement->execute();
                 $statement->closeCursor();
                 return true;
@@ -65,22 +68,22 @@
         global $db;
 
         // Pick out the inputs
-        $id = filter_input(INPUT_POST, 'id');
-        $email = filter_input(INPUT_POST, 'email');
-        $firstName = filter_input(INPUT_POST, 'firstName');
-        $lastName = filter_input(INPUT_POST, 'lastName');
+        $UserID = filter_input(INPUT_POST, 'UserID');
+        $Email = filter_input(INPUT_POST, 'Email');
+        $InnName = filter_input(INPUT_POST, 'InnName');
+        $UserTypeID = filter_input(INPUT_POST, 'UserTypeID');
 
-        if (!empty($id) && !empty($email) && !empty($firstName) && !empty($lastName)) {
+        if (!empty($UserID) && !empty($Email) && !empty($InnName) && !empty($UserTypeID)) {
 
             try {
                 // Modify database row
-                $query = "UPDATE administrators SET email=:email, firstName=:firstName, lastName=:lastName WHERE id = :id";
+                $query = "UPDATE Users SET Email=:Email, InnName=:InnName, UserTypeID=:UserTypeID WHERE UserID  = :UserID";
                 $statement = $db->prepare($query);
 
-                $statement->bindValue(':id', $id);
-                $statement->bindValue(':email', $email);
-                $statement->bindValue(':firstName', $firstName);
-                $statement->bindValue(':lastName', $lastName);
+                $statement->bindValue(':UserID', $UserID);
+                $statement->bindValue(':Email', $Email);
+                $statement->bindValue(':InnName', $InnName);
+                $statement->bindValue(':UserTypeID', $UserTypeID);
 
                 $statement->execute();
                 $statement->closeCursor();
@@ -100,16 +103,16 @@
 
 
     // Create an HTML list on the output
-    function render_administrators($administrators) {
+    function render_administrators($users) {
         $html = '';
-        foreach($administrators as $row) {
-            $title = $row['email'];
+        foreach($users as $row) {
+            $title = $row['Email'];
             $delete = "<a href='delete.php?id=$row[id]'>Delete Record</a>";
             $update = "<a href='delete.php?id=$row[id]'>Deletes for now</a>";
             $body = "
                 <table class='table table-hover'>
-                    <tr><td>Email:</td><td>$row[email]</td></tr>
-                    <tr><td>First:</td><td>$row[firstName]</td></tr>
+                    <tr><td>Email:</td><td>$row[Email]</td></tr>
+                    <tr><td>InnName:</td><td>$row[InnName]</td></tr>
                     <tr><td>Delete for now:</td><td>$update</td></tr>
                     <tr><td>Record $row[id]</td><td>$delete</td></tr>
                 </table>";
@@ -122,9 +125,14 @@
      --------------------------- */
 
     // Create an HTML list on the output
-    function administrators_list_view($administrators) {
+    function administrators_list_view($users) {
         $html = '';
-        foreach($administrators as $row) {
+        $html = '<h2>Editing Page (UC-3)</h2>
+        <p>
+        Add a New User
+        </p>
+        <p><a href="private.php?action=signup" class="button">Add User</a></p>';
+        foreach($users as $row) {
             $html .= render_template('administrator.html', $row);
         }
         return $html;
@@ -132,11 +140,11 @@
 
 
     // add_note_form -- Create an HTML form to add record.
-    function add_administrator_view($administrators) {
+    function add_administrator_view() {
         log_event('Note Add View');                   // Add View
         $page = $_SERVER['PHP_SELF'];
         require_login ($page);        
-        return render_template('administrator_add.html', array());
+        return render_template('sign_up.html', array());
     }
 
 
@@ -168,7 +176,7 @@
         // POST
         $action = filter_input(INPUT_POST, 'action');
         if ($action == 'create') {
-            if (add_administrator()) {
+            if (register_user()) {
                 header('Location: private.php');
             }
         }
@@ -186,22 +194,22 @@
         // GET
         $action = filter_input(INPUT_GET, 'action');
         if (empty($action)) {
-            $list = list_administrators();
+            $list = list_administrator();
             return administrators_list_view($list);
         }
         if ($action == 'add') {
             return add_administrator_view();
         }
         if ($action == 'remove') {
-            $id = filter_input(INPUT_GET, 'id');
-            if (! empty($id)) {
-                return delete_adminstrator_view(get_administrators($id));
+            $UserID = filter_input(INPUT_GET, 'UserID');
+            if (! empty($UserID)) {
+                return delete_adminstrator_view(get_administrators($UserID));
             }
         }
         if ($action == 'edit') {
-            $id = filter_input(INPUT_GET, 'id');
-            if (! empty($id)) {
-                return edit_administrator_view(get_administrators($id));
+            $UserID = filter_input(INPUT_GET, 'UserID');
+            if (! empty($UserID)) {
+                return edit_administrator_view(get_administrators($UserID));
             }
         }
     }

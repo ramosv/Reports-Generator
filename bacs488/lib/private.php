@@ -3,14 +3,14 @@
     require_once 'log.php';
     require_once 'views.php';
     require_once 'auth.php';
-    require_once 'note.php';
-    #require_once 'db.php';
+    //require_once 'note.php';
+    //require_once 'db.php';
     require_once 'administrators_views.php';
 
 
     // Log the page load
     log_page();
-    $list = render_administrators(list_administrators ($db));
+    //$list = render_administrators(list_administrators ($db));
 
     $users = handle_administrator_actions();
     #$user  = handle_auth_actions();
@@ -23,12 +23,7 @@
         // Display the page content
         #$content = render_button('Other Demos', '..');
         #$content .= render_button('Show Log', 'pagelog.php');
-        $content = '<h2>Editing Page (UC-3)</h2>
-        <p>
-            From this edditing page we have acces to UC-4, UC-5, UC-6.
-        <p>
-            <a href=>Add User</a>
-        </p>';
+        $content = '';
         #$content .= "$list";
         
     }

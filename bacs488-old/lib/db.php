@@ -19,28 +19,28 @@
         require_once 'secret_settings.php';
 
         $db_connect = "mysql:host=$host:$port;dbname=$dbname";
-        return db_connect($db_connect, $username, $Password);
+        return db_connect($db_connect, $username, $password);
     }
 
 
     // Local Host Database settings
     function local_connect() {
         $host = 'localhost';
-        $dbname = 'bacsvice_reports';
+        $dbname = 'bacs488';
         $username = 'root';
-        $Password = '';
+        $password = '';
         $db_connect = "mysql:host=$host;dbname=$dbname";
-        return db_connect($db_connect, $username, $Password);
+        return db_connect($db_connect, $username, $password);
     }
 
 
     // Open the database or die
-    function db_connect($db_connect, $username, $Password) {
+    function db_connect($db_connect, $username, $password) {
         // Enable these echo statements to debug the connection.
-            //echo "<h2>DB Connection</h2><p>Connect String:  $db_connect, $username, $Password</p>";
+          #echo "<h2>DB Connection</h2><p>Connect String:  $db_connect, $username, $password</p>";
         try {
-            $db = new PDO($db_connect, $username, $Password);
-            //echo '<p><b>Successful Connection</b></p>';
+            $db = new PDO($db_connect, $username, $password);
+            #echo '<p><b>Successful Connection</b></p>';
             return $db;
         } catch (PDOException $e) {
             $error_message = $e->getMessage();

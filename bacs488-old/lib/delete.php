@@ -3,7 +3,7 @@
     // Connect to the database
     require_once 'db.php';
 
-    // Get the Email of the record to delete
+    // Get the email of the record to delete
     $id = filter_input(INPUT_GET, 'id');
 
     // Attempt to remove the record

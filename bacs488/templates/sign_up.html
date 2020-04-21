@@ -2,7 +2,7 @@
 
 <div class="card">
     <div class="card-header">
-        New User Form
+        Add a New User
     </div>
     <div class="card-body">
         <form action="{{ next }}" method="post">
@@ -10,20 +10,36 @@
             <table class="table table-hover">
                 <tr>
                     <td style="width:30em"><label>Email:</label></td>
-                    <td><input type="text" name="email" class="form-text"></td>
+                    <td><input type="Email" name="Email" class="form-text"></td>
                 </tr>
                 <tr>
                     <td><label>Password:</label></td>
-                    <td><input type="password" name="password" class="form-text"></td>
+                    <td><input type="password" name="Password" class="form-text"></td>
                 </tr>
                 <tr>
-                    <td><label>First Name:</label></td>
-                    <td><input type="text" name="first" class="form-text"></td>
+                    <td><label>Inn Name:</label></td>
+                    <td><input type="text" name="InnName" class="form-text"></td>
                 </tr>
                 <tr>
-                    <td><label>Last Name:</label></td>
-                    <td><input type="text" name="last" class="form-text"></td>
+                    <td><label>ViewID:</label></td>
+                    <td><input type="text" name="ViewID" class="form-text"></td>
+                    <!--
+                    <td><label>UserType:</label></td>
+                    <td><input type="radio" name="UserTypeID" value="2" class="custom-radio" required>&nbsp;Account Manager</td>
+                    <td><input type="radio" name="UserTypeID" value="1" class="custom-radio" required>&nbsp;Inn Owner</td>
+                    -->
+
                 </tr>
+                <tr>
+
+                    <td><label>UserType:</label></td>
+                    <td><input type="radio" name="UserTypeID" value="2" class="custom-radio" required>&nbsp;Account Manager</td>
+                    <td><input type="radio" name="UserTypeID" value="1" class="custom-radio" required>&nbsp; Inn Owner</td>
+
+
+                </tr>
+
+
                 <tr>
                     <td><input type="submit" value="Register" class="button"></td>
                 </tr>

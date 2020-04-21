@@ -1,0 +1,20 @@
+<div class="card">
+
+    <div class="card-header">
+        [{{ id }}] {{ email }}
+    </div>
+
+    <div class="card-body card-padding">
+        {{ firstName }} {{ lastName }}
+    </div>
+
+    <p>
+        <a href="private.php?action=edit&id={{ id }}" class="button">
+            Edit
+        </a>
+        <a class="button" href="private.php?action=remove&id={{ id }}">
+            Delete
+        </a>
+    </p>
+
+</div>

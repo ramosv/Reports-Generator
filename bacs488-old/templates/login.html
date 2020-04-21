@@ -10,13 +10,12 @@
             <table class="table table-hover">
                 <tr>
                     <td><label>Email:</label></td>
-                    <td><input type="text" name="Email" class="form-text"></td>
+                    <td><input type="text" name="email" class="form-text"></td>
                 </tr>
                 <tr>
                     <td><label>Password:</label></td>
-                    <td><input type="password" name="Password" class="form-text"></td>
+                    <td><input type="password" name="password" class="form-text"></td>
                 </tr>
-
                 <tr>
                     <td><input type="submit" value="Login" class="button"></td>
                 </tr>
@@ -27,3 +26,8 @@
         </form>
     </div>
 </div>
+
+<p>
+    Or register for a new account
+</p>
+<p><a href="{{ next }}?action=signup" class="button">Sign Up</a></p>
